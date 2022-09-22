@@ -1,37 +1,13 @@
-/**
-    encoder func
- */
-bool encoder_update_user(uint8_t index, bool clockwise) {
-    if (get_highest_layer(layer_state|default_layer_state) > 0) {
-        if (index == 0) { /* First encoder */
-           if (clockwise) {
-             tap_code16(KC_RIGHT);
-           } else {
-             tap_code16(KC_LEFT);
-           }
-        }
-    } else if(get_highest_layer(layer_state|default_layer_state) == 15){
-      if (index == 0) { /* First encoder */
-         if (clockwise) {
-           tap_code16(KC_UP);
-           tap_code16(KC_UP);
-           tap_code16(KC_UP);
-           tap_code16(KC_UP);
-         } else {
-           tap_code16(KC_DOWN);
-           tap_code16(KC_DOWN);
-           tap_code16(KC_DOWN);
-           tap_code16(KC_DOWN);
-         }
-      }
-    }else {
-      if (index == 0) { /* First encoder */
-             if (clockwise) {
-               tap_code16(KC_UP);
-             } else {
-               tap_code16(KC_DOWN);
-             }
-          }
+
+static int c_frame = 0;
+bool first_render = true;
+
+static void render_anim(void) {
+    if (first_render) {
+        oled_write_raw_P( frame, ANIM_SIZE);
+        first_render = 0;
+    } else {
+        change_frame_bytewise(c_frame);
     }
-  return false;
+    c_frame = c_frame+1 > IDLE_FRAMES ? 0 : c_frame+1;
 }
