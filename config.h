@@ -24,5 +24,7 @@
 #    define RGBLIGHT_LIMIT_VAL 150
 #endif
 
+#define TAPPING_TERM 180
+
 // Lets you roll mod-tap keys
 #define IGNORE_MOD_TAP_INTERRUPT
