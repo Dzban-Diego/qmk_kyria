@@ -25,6 +25,7 @@
 #endif
 
 #define TAPPING_TERM 180
+#define ENCODER_RESOLUTION 2
 
 // Lets you roll mod-tap keys
 #define IGNORE_MOD_TAP_INTERRUPT
