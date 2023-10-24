@@ -11,20 +11,6 @@ char wpm_str[10];
 #define _SPEC 5
 #define _num 6
 
-// Tap Dance declarations
-enum {
-    TD_P1,
-    TD_P2,
-    TD_P3,
-};
-
-// Tap Dance definitions
-qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_P1] = ACTION_TAP_DANCE_DOUBLE(KC_LPRN, KC_RPRN),
-    [TD_P2] = ACTION_TAP_DANCE_DOUBLE(KC_LCBR, KC_RCBR),
-    [TD_P3] = ACTION_TAP_DANCE_DOUBLE(KC_LBRC, KC_RBRC),
-};
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Domyślna warswa colemak_dh
     [_COL] = LAYOUT(
@@ -69,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Specjalne
 	[_SPEC] = LAYOUT(
         KC_GRV       , KC_1         , KC_2         , KC_3         , KC_4         , KC_5         , /*===========, =============, =============, ============*/ KC_6         , KC_7         , KC_8         , KC_9         , KC_0         , KC_PSCR      ,
-	    KC_SLSH      , KC_BSLS      , KC_COLN      , KC_LT        , KC_GT        , KC_NO        , /*===========, =============, =============, ============*/ LSFT(KC_8)   , TD(TD_P1)    , TD(TD_P2)    , TD(TD_P3)    , KC_MINS      , KC_BSPC      ,
+	    KC_SLSH      , KC_BSLS      , KC_COLN      , KC_LT        , KC_GT        , KC_NO        , /*===========, =============, =============, ============*/ LSFT(KC_8)   , KC_LPRN      , KC_LCBR      , KCLBRC       , KC_MINS      , KC_BSPC      ,
 	    KC_LSFT      , KC_NO        , KC_QUOT      , KC_DQUO      , LSFT(KC_BSLS), KC_AMPR      , TG(0)        , KC_NO        , KC_NO        , KC_NO        , LSFT(KC_2)   , KC_RPRN      , KC_RCBR      , KC_RBRC      , KC_EQL       , KC_ENT       ,
 	    /*===========, =============, =========== */ KC_NO        , KC_NO        , KC_LALT      , KC_NO        , KC_NO        , KC_NO        , KC_TRNS      , KC_TRNS      , KC_NO        , KC_NO
     ),
