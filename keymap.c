@@ -353,14 +353,14 @@ bool oled_task_user(void) {
         // Host Keyboard Layer Status
         oled_write_P(PSTR("Najlepsza klawka \n"), false);
         oled_write_P(PSTR(" \n"), false);
-        oled_write_P(PSTR("Warstwa: \n"), false);
+        oled_write_P(PSTR(" \n"), false);
 
         switch (get_highest_layer(layer_state)) {
             case DEF:
-                oled_write_P(PSTR("Colemak_dh \n"), false);
+                oled_write_P(PSTR("Domyslna\n"), false);
                 break;
             case SYS:
-                    oled_write_P(PSTR("Navigacja systemu \n"), false);
+                    oled_write_P(PSTR("System \n"), false);
                 break;
             case MED:
                 oled_write_P(PSTR("Media \n"), false);
@@ -369,7 +369,7 @@ bool oled_task_user(void) {
                 oled_write_P(PSTR("Navigacja \n"), false);
                 break;
             case NPD:
-                oled_write_P(PSTR("123451242 \n"), false);
+                oled_write_P(PSTR("Numpad \n"), false);
                 break;
             case SPC:
                 oled_write_P(PSTR("Specjalne\n"), false);
@@ -379,7 +379,7 @@ bool oled_task_user(void) {
                 break;
             default:
                 // Or use the write_ln shortcut over adding '\n' to the end of your string
-                oled_write_ln_P(PSTR("Teraz to coś popsułeś"), false);
+                oled_write_ln_P(PSTR("Teraz to cos popsules"), false);
         }
 
         // Host Keyboard LED Status
@@ -388,6 +388,7 @@ bool oled_task_user(void) {
         oled_write_P(led_state.caps_lock ? PSTR("CAP ") : PSTR("    "), false);
         oled_write_P(led_state.scroll_lock ? PSTR("SCR ") : PSTR("    "), false);
         oled_write_P(PSTR("\n"), false);
+        oled_write_P(PSTR(" \n"), false);
         oled_write_P(PSTR("Dzban_Diego \n"), false);
         return false;
     }else{
