@@ -3,13 +3,13 @@
 char wpm_str[10];
 
 // Zdefiniowanie warstw
-#define _COL 0
-#define _SYS_NAV 1
-#define _MED 2
-#define _NAV 3
-#define _NUM 4
-#define _SPEC 5
-#define _num 6
+#define DEF 0
+#define SYS 1
+#define MED 2
+#define NAV 3
+#define NPD 4
+#define SPC 5
+#define NUM 6
 
 #define O_ALT OSM(MOD_RALT)
 #define O_SFT OSM(MOD_LSFT)
@@ -58,15 +58,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-------+-------+-------+-------+-------+-------+---------------.  ,---------------+-------+-------+-------+-------+-------+-------|
  * | SHIFT |   X   |   C   |   D   |   Z   |   V   |  ESC  | T_SYS |  | H_NPD | T_NAV |   K   |   H   |  , <  | .  >  |  / ?  | RETURN|
  * `-----------------------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-----------------------'
- *                         | ???   |  SUP  |  ALT  | H_SYS |  CTRL |  | T_NPD | H_NAV | SPACE | H_SPEC| H_MED |
+ *                         |  ALT  |  SUP  |  ALT  | H_SYS |  CTRL |  | T_NPD | H_NAV | SPACE | H_SPC | H_MED |
  *                         |       |       |       |       |       |  |       |       | H_NUM |       |       |
  *                         `---------------------------------------'  `---------------------------------------'
  */
-    [_COL] = LAYOUT(
+    [DEF] = LAYOUT(
         KC_ESC , KC_Q   , KC_W   , KC_F   , KC_P   , KC_B   , /*=====, =======, =======, ======*/ KC_J   , KC_L   , KC_U   , KC_Y   , KC_SCLN, KC_DEL ,
         KC_TAB , KC_A   , KC_R   , KC_S   , KC_T   , KC_G   , /*=====, =======, =======, ======*/ KC_M   , KC_N   , KC_E   , KC_I   , KC_O   , KC_BSPC,
-        O_SFT  , KC_X   , KC_C   , KC_D   , KC_Z   , KC_V   , KC_ESC , TG(1)  , MO(4)  , TG(3)  , KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
-        /*=====, =======, ======*/ O_ALT  , KC_LGUI, O_ALT  , MO(1)  , KC_LCTL, TG(4)  , MO(3)  , M6_SPC , MO(5)  , MO(2)    /*=====, =======, ======*/
+        O_SFT  , KC_X   , KC_C   , KC_D   , KC_Z   , KC_V   , KC_ESC , TG(SYS), MO(NPD), TG(NAV), KC_K   , KC_H   , KC_COMM, KC_DOT , KC_SLSH, KC_ENT ,
+        /*=====, =======, ======*/ O_ALT  , KC_LGUI, O_ALT  , MO(SYS), KC_LCTL, TG(NPD), MO(NAV), M6_SPC , MO(SPC), MO(MED)  /*=====, =======, ======*/
     ),
 
 /*
@@ -79,14 +79,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-------+-------+-------+-------+-------+-------+---------------.  ,---------------+-------+-------+-------+-------+-------+-------|
  * |  ???  |  SUP  | SHIFT |  CTRL |  ALT  |  ???  |  ESC  | T_SYS |  | H_NPD |  ???  |   %   |   #   |   $   |   !   |  F11  |  F12  |
  * `-----------------------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-----------------------'
- *                         | T_COL |  ???  |  ???  | M_SYS |  CTRL |  |  ???  | H_NAV |  ???  |  ???  |  ???  |
+ *                         | T_DEF |  ???  |  ???  | M_SYS |  CTRL |  |  ???  | H_NAV |  ???  |  ???  |  ???  |
  *                         `---------------------------------------'  `---------------------------------------'
  */
-	[_SYS_NAV] = LAYOUT(
+	[SYS] = LAYOUT(
 	    _______, SS_1   , SS_2   , SS_3   , SS_4   , SS_5   , /*=====, =======, =======, ======*/ KC_PGUP, KC_HOME, KC_UP  , KC_END , S_PGUP , KC_DEL ,
 	    _______, S_1    , S_2    , S_3    , S_4    , S_5    , /*=====, =======, =======, ======*/ KC_PGDN, SH_8   , SH_2   , KC_RABK, KC_MINS, KC_BSPC,
         XXXXXXX, KC_LGUI, KC_LSFT, KC_LCTL, KC_LALT, XXXXXXX, _______, _______, _______, XXXXXXX, SH_5   , SH_3   , SH_4   , SH_1   , KC_F11 , KC_F12 ,
-        /*=====, =======, ======*/ TG(0)  , XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX  /*=====, =======, ======*/
+        /*=====, =======, ======*/ TG(DEF), XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX  /*=====, =======, ======*/
     ),
 
 /*
@@ -101,7 +101,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                         |  XXX  |  XXX  |  XXX  |  ___  |  ___  |  |  ___  |  ___  |  ___  |  XXX  |  ___  |
  *                         `---------------------------------------'  `---------------------------------------'
  */
-	[_MED] = LAYOUT(
+	[MED] = LAYOUT(
 	    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /*=====, =======, =======, ======*/ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
 	    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /*=====, =======, =======, ======*/ XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, KC_BRIU, XXXXXXX,
 	    XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, KC_BRID, KC_PSCR,
@@ -115,17 +115,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-------+-------+-------+-------+-------+-------|                                  |-------+-------+-------+-------+-------+-------|
  * |  TAB  | SUPER |  ALT  | SHIFT |  CTRL |  RCLC |                                  | PGDOWN|      |      |      | CTRL /|  BACK |
  * |-------+-------+-------+-------+-------+-------+---------------.  ,---------------+-------+-------+-------+-------+-------+-------|
- * | T_COL |  F12  |  ALT  |  XXX  |  XXX  |  XXX  | T_COL |  XXX  |  |  XXX  |  XXX  |  XXX  |  XXX  |  XXX  |  XXX  | CTRL .| RETURN|
+ * | T_DEF |  F12  |  ALT  |  XXX  |  XXX  |  XXX  | T_DEF |  XXX  |  |  XXX  |  XXX  |  XXX  |  XXX  |  XXX  |  XXX  | CTRL .| RETURN|
  * `-----------------------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-----------------------'
- *                         |  XXX  |  XXX  |  XXX  |  H_SYS|  XXX  |  |  XXX  |  XXX  |  XXX  |  XXX  |  XXX  |
+ *                         |  XXX  |  XXX  |  XXX  | H_SYS |  XXX  |  |  XXX  |  XXX  |  XXX  |  XXX  |  XXX  |
  *                         `---------------------------------------'  `---------------------------------------'
  */
 // Nawigxacja
-    [_NAV] = LAYOUT(
+    [NAV] = LAYOUT(
         KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /*=====, =======, =======, ======*/ KC_PGUP, KC_HOME, KC_UP  , KC_END , XXXXXXX, KC_DEL ,
         KC_TAB , KC_LGUI, KC_LALT, KC_LSFT, KC_LCTL, KC_APP , /*=====, =======, =======, ======*/ KC_PGDN, KC_LEFT, KC_DOWN, KC_RGHT, C_SLSH , KC_BSPC,
-        TG(0)  , KC_F12 , O_ALT  , XXXXXXX, XXXXXXX, XXXXXXX, TG(0)  , XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, C_DOT  , KC_ENT ,
-        /*=====, =======, ======*/ XXXXXXX, XXXXXXX, XXXXXXX, MO(1)  , XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX  /*=====, =======, ======*/
+        TG(DEF), KC_F12 , O_ALT  , XXXXXXX, XXXXXXX, XXXXXXX, TG(DEF), XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, _______, XXXXXXX, C_DOT  , KC_ENT ,
+        /*=====, =======, ======*/ XXXXXXX, XXXXXXX, XXXXXXX, MO(SYS), XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX  /*=====, =======, ======*/
     ),
 
 /*
@@ -137,15 +137,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-------+-------+-------+-------+-------+-------+---------------.  ,---------------+-------+-------+-------+-------+-------+-------|
  * |  XXX  |  XXX  |   ,   |   .   |   =   |  XXX  |  XXX  |  XXX  |  |  XXX  |  XXX  |  XXX  |   1   |   2   |   3   |  XXX  | RETURN|
  * `-----------------------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-----------------------'
- *                         |  XXX  |  XXX  |  XXX  |  ___  |  ___  |  |  ___  |  ___  |  ___  |  XXX  |  ___  |
+ *                         |  XXX  |  XXX  |  XXX  |  ___  |  ___  |  |  ___  |  ___  | H_NAV |  XXX  |  ___  |
  *                         `---------------------------------------'  `---------------------------------------'
  */
     // Numpad
-	[_NUM] = LAYOUT(
+	[NPD] = LAYOUT(
 	    KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /*=====, =======, =======, ======*/ XXXXXXX, KC_7   , KC_8   , KC_9   , XXXXXXX, KC_DEL ,
 	    KC_TAB , KC_PPLS, KC_PAST, KC_PMNS, KC_PSLS, XXXXXXX, /*=====, =======, =======, ======*/ KC_0   , KC_4   , KC_5   , KC_6   , XXXXXXX, KC_BSPC,
-	    XXXXXXX, XXXXXXX, KC_COMM , KC_DOT , KC_PEQL, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_1   , KC_2   , KC_3   , XXXXXXX, KC_ENT ,
-        /*=====, =======, ======*/ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, MO(3)  , KC_SPC , KC_0   , KC_PDOT  /*=====, =======, ======*/
+	    XXXXXXX, XXXXXXX, KC_COMM, KC_DOT , KC_PEQL, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_1   , KC_2   , KC_3   , XXXXXXX, KC_ENT ,
+        /*=====, =======, ======*/ XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, _______, MO(NAV), KC_SPC , KC_0   , KC_PDOT  /*=====, =======, ======*/
     ),
 
 /*
@@ -155,15 +155,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-------+-------+-------+-------+-------+-------|                                  |-------+-------+-------+-------+-------+-------|
  * |   /   |   \   |   :   |   <   |   >   |  XXX  |                                  |   *   |   (   |   {   |   [   |   -   |  BACK |
  * |-------+-------+-------+-------+-------+-------+---------------.  ,---------------+-------+-------+-------+-------+-------+-------|
- * |  SFT  |  XXX  |   "   |   "   |   |   |   &   |  T_COL|  XXX  |  |  XXX  |  XXX  |   @   |   )   |   }   |   ]   |   =   | RETURN|
+ * |  SFT  |  XXX  |   "   |   "   |   |   |   &   | T_DEF |  XXX  |  |  XXX  |  XXX  |   @   |   )   |   }   |   ]   |   =   | RETURN|
  * `-----------------------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-----------------------'
  *                         |  XXX  |  XXX  |  ALT  |  ___  |  ___  |  |  ___  |  ___  |  ___  |  XXX  |  ___  |
  *                         `---------------------------------------'  `---------------------------------------'
  */
-	[_SPEC] = LAYOUT(
+	[SPC] = LAYOUT(
         KC_GRV , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , /*=====, =======, =======, ======*/ KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_PSCR,
 	    KC_SLSH, KC_BSLS, KC_COLN, KC_LT  , KC_GT  , XXXXXXX, /*=====, =======, =======, ======*/ SH_8   , KC_LPRN, KC_LCBR, KC_LBRC, KC_MINS, KC_BSPC,
-	    KC_LSFT, XXXXXXX, KC_QUOT, KC_DQUO, S_BSLS , KC_AMPR, TG(0)  , XXXXXXX, XXXXXXX, XXXXXXX, SH_2   , KC_RPRN, KC_RCBR, KC_RBRC, KC_EQL , KC_ENT ,
+	    KC_LSFT, XXXXXXX, KC_QUOT, KC_DQUO, S_BSLS , KC_AMPR, TG(DEF), XXXXXXX, XXXXXXX, XXXXXXX, SH_2   , KC_RPRN, KC_RCBR, KC_RBRC, KC_EQL , KC_ENT ,
 	    /*=====, =======, ======*/ XXXXXXX, XXXXXXX, KC_LALT, XXXXXXX, XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, XXXXXXX  /*=====, =======, ======*/
     ),
 
@@ -174,16 +174,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |-------+-------+-------+-------+-------+-------|                                  |-------+-------+-------+-------+-------+-------|
  * |   0   |   1   |   2   |   3   |   4   |   5   |                                  |   6   |   7   |   8   |   9   |   0   |  BACK |
  * |-------+-------+-------+-------+-------+-------+---------------.  ,---------------+-------+-------+-------+-------+-------+-------|
- * |  XXX  |   _   |   $   |  CTRL |  ALT  |  XXX  |  XXX  |  XXX  |  |  XXX  |  XXX  |  XXX  |   MO  |  MO   |   MO  | SHIFT |  F12  |
+ * |  XXX  |   _   |   $   |  CTRL |  ALT  |  XXX  |  XXX  |  XXX  |  |  XXX  |  XXX  |  XXX  | H_MED | H_NAV | H_NPD | SHIFT |  F12  |
  * `-----------------------+-------+-------+-------+-------+-------|  |-------+-------+-------+-------+-------+-----------------------'
- *                         |   TG0 |  XXX  |  XXX  |  ___  |  ___  |  |  ___  |  ___  |  ___  |  XXX  |  ___  |
+ *                         | T_DEF |  XXX  |  XXX  |  ___  |  ___  |  |  ___  |  ___  |  ___  |  XXX  |  ___  |
  *                         `---------------------------------------'  `---------------------------------------'
  */
-    [_num] = LAYOUT(
+    [NUM] = LAYOUT(
         _______, SS_1   , SS_2   , SS_3   , SS_4   , SS_5   , /*=====, =======, =======, ======*/ KC_PGUP, KC_HOME, KC_UP  , KC_END , S_PGUP , KC_DEL ,
         KC_0   , KC_1   , KC_2   , KC_3   , KC_4   , KC_5   , /*=====, =======, =======, ======*/ KC_6   , KC_7   , KC_8   , KC_9   , KC_0   , KC_BSPC,
-        XXXXXXX, SH_MINS, SH_4   , KC_LCTL, KC_LALT, XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, MO(2)  , MO(3)  , MO(4)  , KC_LSFT, KC_F12 ,
-        /*=====, =======, ======*/ TG(0)  , XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX  /*=====, =======, ======*/
+        XXXXXXX, SH_MINS, SH_4   , KC_LCTL, KC_LALT, XXXXXXX, _______, _______, _______, XXXXXXX, XXXXXXX, MO(MED), MO(NAV), MO(NPD), KC_LSFT, KC_F12 ,
+        /*=====, =======, ======*/ TG(DEF), XXXXXXX, XXXXXXX, _______, _______, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX  /*=====, =======, ======*/
     ),
 };
 
@@ -356,23 +356,26 @@ bool oled_task_user(void) {
         oled_write_P(PSTR("Warstwa: \n"), false);
 
         switch (get_highest_layer(layer_state)) {
-            case _COL:
+            case DEF:
                 oled_write_P(PSTR("Colemak_dh \n"), false);
                 break;
-            case _SYS_NAV:
+            case SYS:
                     oled_write_P(PSTR("Navigacja systemu \n"), false);
                 break;
-            case _MED:
+            case MED:
                 oled_write_P(PSTR("Media \n"), false);
                 break;
-            case _NAV:
+            case NAV:
                 oled_write_P(PSTR("Navigacja \n"), false);
                 break;
-            case _NUM:
+            case NPD:
                 oled_write_P(PSTR("123451242 \n"), false);
                 break;
-            case _SPEC:
+            case SPC:
                 oled_write_P(PSTR("Specjalne\n"), false);
+                break;
+            case NUM:
+                oled_write_P(PSTR("Numerki\n"), false);
                 break;
             default:
                 // Or use the write_ln shortcut over adding '\n' to the end of your string
