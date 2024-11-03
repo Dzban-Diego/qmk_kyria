@@ -142,10 +142,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
     // Numpad
 	[NPD] = LAYOUT(
-	    KC_ESC , XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, /*=====, =======, =======, ======*/ XXXXXXX, KC_7   , KC_8   , KC_9   , XXXXXXX, KC_DEL ,
+	    KC_ESC , XXXXXXX, KC_C   , KC_V   , XXXXXXX, XXXXXXX, /*=====, =======, =======, ======*/ XXXXXXX, KC_7   , KC_8   , KC_9   , XXXXXXX, KC_DEL ,
 	    KC_TAB , KC_PPLS, KC_PAST, KC_PMNS, KC_PSLS, XXXXXXX, /*=====, =======, =======, ======*/ KC_0   , KC_4   , KC_5   , KC_6   , XXXXXXX, KC_BSPC,
 	    XXXXXXX, XXXXXXX, KC_COMM, KC_DOT , KC_PEQL, XXXXXXX, XXXXXXX, _______, XXXXXXX, XXXXXXX, XXXXXXX, KC_1   , KC_2   , KC_3   , XXXXXXX, KC_ENT ,
-        /*=====, =======, ======*/ C(KC_C), C(KC_V), XXXXXXX, XXXXXXX, XXXXXXX, _______, MO(NAV), KC_SPC , KC_0   , KC_PDOT  /*=====, =======, ======*/
+        /*=====, =======, ======*/ KC_C   , KC_V   , XXXXXXX, XXXXXXX, KC_LCTL, _______, MO(NAV), KC_SPC , KC_0   , KC_PDOT  /*=====, =======, ======*/
     ),
 
 /*
